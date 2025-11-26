@@ -1,0 +1,78 @@
+
+--------------------------------------------------------
+H2
+
+http://localhost:8080/h2-console
+
+JDBC URL: jdbc:h2:mem:testdb
+User Name: sa
+Password: (dejar vacío)
+
+
+----------------------------------------------------------
+Postman
+
+RAW
+
+->Configurar los Headers
+
+Haz clic en la pestaña "Headers".
+En el campo "Key", escribe: Content-Type.
+En el campo "Value", escribe: application/json.
+
+
+->Configurar el Body (Cuerpo de la Solicitud)
+
+Haz clic en la pestaña "Body".
+Selecciona la opción "raw".
+Del menú desplegable a la derecha, selecciona "JSON".
+En el área de texto, ingresa el siguiente JSON (ejemplo de ADN mutante)
+
+
+Consultas
+{
+  "dna": ["ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"]
+}
+
+Codigo 200 OK    el adn es mutante
+
+
+{
+  "dna": ["ATGCGA", "CAGTGC", "TTATTT", "AGACGG", "GCGTCA", "TCACTG"]
+}
+
+Codigo 403  Forbidden No es mutante
+
+-----------------------------------------------------------
+
+GET
+
+Haz clic en el botón "Send".
+
+Respuesta esperada:
+
+jsonCopiar{
+  "count_mutant_dna": 1,
+  "count_human_dna": 1,
+  "ratio": 1.0
+}
+
+------------------------------------------------------------------
+H2
+
+verificar mis consultas en postman
+
+SELECT * FROM DNA_RECORD;
+
+
+---------------------------------------------------------------
+Terminal
+
+mvn test
+
+mvn jacoco:report
+
+
+-----------------------------------------------------------------
+
+http://localhost:8080/swagger-ui.html
